@@ -93,8 +93,6 @@ std::string ExtractImageUrlFromXML(const std::string& xmlFilePath)
     std::string xmlContent(buf);
     delete[] buf;
     
-    // Simple XML parsing - find image URL
-    // Format: <url>https://example.com/image.jpg</url>
     std::string urlStartTag = "<url>";
     std::string urlEndTag = "</url>";
     
@@ -107,7 +105,6 @@ std::string ExtractImageUrlFromXML(const std::string& xmlFilePath)
     
     std::string imageUrl = xmlContent.substr(startPos, endPos - startPos);
     
-    // Bing URLs might need base URL prepended
     if (imageUrl.substr(0, 4) != "http")
     {
         imageUrl = "https://www.bing.com" + imageUrl;
@@ -120,7 +117,6 @@ std::string ExtractImageUrlFromXML(const std::string& xmlFilePath)
 void EnsureDirectoryExists(const std::string& path)
 {
     // Create directory if it doesn't exist
-    // Note: This is Windows-specific
     CreateDirectoryA(path.c_str(), NULL);
 }
 //---------------------------------------------------------------------------
@@ -190,3 +186,4 @@ void __fastcall TMainForm::FormActivate(TObject* Sender)
     this->Close();
 }
 //---------------------------------------------------------------------------
+
